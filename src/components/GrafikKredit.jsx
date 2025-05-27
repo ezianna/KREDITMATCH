@@ -19,7 +19,7 @@ export default function GrafikKredit() {
     .sort((a, b) => b.skorAkhir - a.skorAkhir);
 
   return (
-    <div className="p-6 bg-white shadow rounded">
+    <div className="p-6 bg-[#f3f3e0] rounded-xl p-8 shadow rounded">
       <h2 className="text-lg font-semibold mb-4 text-gray-700">Grafik Skor Akhir Kredit</h2>
 
       {/* Bungkus ResponsiveContainer dengan div yang bisa scroll horizontal */}

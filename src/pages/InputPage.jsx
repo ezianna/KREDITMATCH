@@ -55,7 +55,7 @@ function InputPage() {
   }, [form]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-700 to-blue-900 p-8">
+    <div className="min-h-screen bg-[#27548a] rounded-xl p-8">
       <form onSubmit={handleSubmit} className="p-8 bg-yellow-100 rounded-2xl shadow-xl border-4 border-gray-900 max-w-4xl mx-auto space-y-6">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
