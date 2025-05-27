@@ -1,0 +1,91 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: white;
+  background-color: #27548A;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #27548A;
+  color: white;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  color: white;
+  background-color: #F3F3E0;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  border-radius: 8px;
+  color: #183B4E; /* teks heading tetap terbaca di atas warna terang */
+}
+
+/* Label form */
+label {
+  background-color: #F3F3E0;
+  color: #183B4E;
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Form container */
+.form-container {
+  background-color: #F3F3E0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: #183B4E;
+}
+
+/* Tabel atau data list */
+.table-container {
+  background-color: #F3F3E0;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  color: #183B4E;
+}
+
+/* Button */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #a31313;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+button:hover {
+  background-color: #183B4E;
+  color: #F3F3E0;
+}
+
+/* Anchor */
+a {
+  font-weight: 500;
+  color: #F3F3E0;
+  text-decoration: none;
+}
+a:hover {
+  color: #DDA853;
+}
