@@ -28,7 +28,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center p-6" style={{backgroundColor: '#27548a' }}>
       {/* Main Container */}
       <div className="flex flex-col items-center gap-8">
         {/* Title - KREDITMATCH */}

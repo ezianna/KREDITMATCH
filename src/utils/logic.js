@@ -1,13 +1,13 @@
 // src/utils/logic.js
 
 const profilIdeal = {
-  lamaUsaha: 5,
-  penghasilan: 5,
+  lamaUsaha: 3,
+  penghasilan: 3,
   agunan: 4,
   riwayatKredit: 4,
-  tanggungan: 3,
-  usia: 3,
-  pendidikan: 4,
+  tanggungan: 2,
+  usia: 2,
+  pendidikan: 5,
 };
 
 export function konversiKeSkala(namaKriteria, nilai) {
@@ -26,6 +26,8 @@ export function konversiKeSkala(namaKriteria, nilai) {
       return n >= 50 ? 2 : n >= 40 ? 3 : n >= 30 ? 4 : 5;
     case "agunan":
       return n === 0 ? 1 : n === 1 ? 3 : n === 2 ? 4 : n === 3 ? 5 : null;
+    case "riwayatKredit":
+      return n === 1 ? 4 : n === 0 ? 2 : 1;
     default:
       return konversi5(n);
   }
@@ -47,7 +49,7 @@ export function hitungSkor(data) {
 
   for (const k of cfList) {
     let nilai = konversiKeSkala(k, data[k]);
-    if (nilai === null || isNaN(nilai)) nilai = 1; // 🛡️ fallback
+    if (nilai === null || isNaN(nilai)) nilai = 1; // fallback
     const gap = nilai - profilIdeal[k];
     totalCF += bobotGap(gap);
   }
@@ -63,6 +65,18 @@ export function hitungSkor(data) {
   const nsf = totalSF / sfList.length;
   const skorAkhir = ncf * 0.6 + nsf * 0.4;
 
-  return { ncf, nsf, skorAkhir };
-}
+  // 🔍 Kategori penilaian
+  let kategori;
+  if (skorAkhir >= 3.5) {
+    kategori = "Sangat layak";
+  } else if (skorAkhir >= 3.1) {
+    kategori = "Layak";
+  } else {
+    kategori = "Tidak direkomendasikan";
+  }
 
+  // ✅ Status lolos atau tidak
+  const lolos = skorAkhir >= 3.1;
+
+  return { ncf, nsf, skorAkhir, kategori, lolos };
+}

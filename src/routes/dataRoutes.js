@@ -60,21 +60,21 @@ router.post('/', (req, res) => {
     return res.status(400).json({ message: 'Perhitungan skor gagal, cek input data.' });
   }
 
-  const { ncf, nsf, skorAkhir } = hasil;
+  const { ncf, nsf, skorAkhir, kategori, lolos} = hasil;
   console.log("🔢 Perhitungan skor:", { ncf, nsf, skorAkhir });
 
   const sql = `
     INSERT INTO users (
       nama, namaUsaha, lamaUsaha, penghasilan,
       agunan, riwayatKredit, tanggungan, usia,
-      pendidikan, ncf, nsf, skorAkhir
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      pendidikan, ncf, nsf, skorAkhir, kategori, lolos
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.query(sql, [
     nama, namaUsaha, lamaUsaha, penghasilan,
     agunan, riwayatKredit, tanggungan, usia,
-    pendidikan, ncf, nsf, skorAkhir
+    pendidikan, ncf, nsf, skorAkhir, kategori, lolos
   ], (err) => {
     if (err) {
       console.error("❌ DB Error:", err);
@@ -86,12 +86,25 @@ router.post('/', (req, res) => {
 
 // ===================== GET DATA RIWAYAT =====================
 router.get('/', (req, res) => {
-  const sql = `SELECT * FROM users ORDER BY id DESC LIMIT 10`;
+  const sql = `SELECT * FROM users ORDER BY id DESC LIMIT 100`;
   db.query(sql, (err, results) => {
     if (err) {
       return res.status(500).json({ message: 'Gagal mengambil data', error: err.message });
     }
-    res.json(results);
+
+    const hasil = results.map(row => {
+      const { ncf, nsf, skorAkhir, kategori, lolos } = hitungSkor(row);
+      return {
+        ...row,
+        ncf,
+        nsf,
+        skorAkhir,
+        kategori,
+        lolos
+      };
+    });
+
+    res.json(hasil);
   });
 });
 

@@ -80,9 +80,10 @@ const Navbar = ({ setIsLoggedIn }) => {
                 to={item.to}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                 }`}
+                style={isActive ? { backgroundColor: '#27548a' } : {}}
               >
                 <div className={`${isActive ? 'text-white' : 'text-gray-400 group-hover:text-white'} transition-colors`}>
                   {item.icon}

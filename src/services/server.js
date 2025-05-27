@@ -9,8 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/data', dataRoutes);
 
-// Pakai routing yang sudah dipisah
-app.use('/api/data', dataRoutes);
 
 // Tes koneksi DB saat startup
 db.getConnection((err, connection) => {

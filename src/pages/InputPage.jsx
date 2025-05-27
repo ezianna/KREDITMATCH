@@ -1,190 +1,199 @@
-import { useState } from 'react';
+// src/pages/InputPage.jsx
+import React, { useState, useCallback } from 'react';
+import axios from 'axios';
 
 function InputPage() {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     nama: '',
     namaUsaha: '',
     lamaUsaha: '',
     penghasilan: '',
+    agunan: '',
     riwayatKredit: '',
     tanggungan: '',
     usia: '',
-    agunan: '',
     pendidikan: ''
   });
 
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }, []);
 
-  const handleSubmit = () => {
-    console.log('Data form:', formData);
-    // Di sini nanti akan ditambahkan logika untuk mengirim data
-    alert('Data berhasil disimpan!');
-  };
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
 
-  const agunanOptions = [
-    'Pilih Agunan',
-    'Rumah',
-    'Kendaraan',
-    'Tanah',
-    'Sertifikat Deposito',
-    'Emas',
-    'Tidak Ada'
-  ];
+    const payload = {
+      ...form,
+      lamaUsaha: Number(form.lamaUsaha),
+      penghasilan: Number(form.penghasilan),
+      agunan: Number(form.agunan),
+      riwayatKredit: Number(form.riwayatKredit),
+      tanggungan: Number(form.tanggungan),
+      usia: Number(form.usia),
+      pendidikan: Number(form.pendidikan),
+    };
 
-  const pendidikanOptions = [
-    'Pilih Pendidikan',
-    'SD',
-    'SMP',
-    'SMA/SMK',
-    'Diploma',
-    'Sarjana (S1)',
-    'Magister (S2)',
-    'Doktor (S3)'
-  ];
-
-  const InputField = ({ label, value, onChange, type = "text", placeholder = "" }) => (
-    <div className="mb-4">
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder || label}
-        className="w-full px-6 py-4 bg-slate-600 text-white placeholder-gray-300 rounded-full border-none outline-none focus:ring-2 focus:ring-blue-400 text-center font-medium"
-      />
-    </div>
-  );
-
-  const SelectField = ({ label, value, onChange, options }) => (
-    <div className="mb-4 relative">
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full px-6 py-4 bg-slate-600 text-white rounded-full border-none outline-none focus:ring-2 focus:ring-blue-400 text-center font-medium appearance-none cursor-pointer"
-      >
-        {options.map((option, index) => (
-          <option key={index} value={index === 0 ? '' : option} className="bg-slate-600">
-            {option}
-          </option>
-        ))}
-      </select>
-      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
-    </div>
-  );
+    try {
+      await axios.post('http://localhost:5000/api/data', payload);
+      alert('Data berhasil dikirim!');
+      setForm({
+        nama: '',
+        namaUsaha: '',
+        lamaUsaha: '',
+        penghasilan: '',
+        agunan: '',
+        riwayatKredit: '',
+        tanggungan: '',
+        usia: '',
+        pendidikan: ''
+      });
+    } catch (error) {
+      alert('Terjadi kesalahan saat mengirim data.');
+      console.error(error);
+    }
+  }, [form]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex">
-      {/* Sidebar */}
-      <div className="w-64 p-6 flex flex-col space-y-4">
-        <button className="bg-yellow-100 text-gray-800 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-yellow-200 transition">
-          Input Data
-        </button>
-        <button className="bg-yellow-100 text-gray-800 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-yellow-200 transition">
-          Riwayat
-        </button>
-        <button className="bg-yellow-100 text-gray-800 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-yellow-200 transition">
-          Grafik
-        </button>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 p-8 flex flex-col items-center">
-        {/* Header */}
-        <div className="bg-yellow-100 text-gray-800 px-8 py-4 rounded-2xl mb-8 shadow-lg">
-          <h1 className="text-2xl font-bold text-center">Silahkan Input Data!</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-700 to-blue-900 p-8">
+      <form onSubmit={handleSubmit} className="p-8 bg-yellow-100 rounded-2xl shadow-xl border-4 border-gray-900 max-w-4xl mx-auto space-y-6">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            Silahkan Input Data!
+          </h2>
+          <div className="w-20 h-1 bg-yellow-400 mx-auto rounded"></div>
         </div>
 
-        {/* Form Container */}
-        <div className="bg-yellow-50 p-8 rounded-3xl shadow-2xl w-full max-w-2xl border-4 border-black">
-          <div className="space-y-4">
-            <InputField
-              label="Nama"
-              value={formData.nama}
-              onChange={(value) => handleInputChange('nama', value)}
-              placeholder="Nama"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Nama</label>
+            <input 
+              type="text" 
+              name="nama" 
+              value={form.nama} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Masukkan nama"
             />
-
-            <InputField
-              label="Nama Usaha"
-              value={formData.namaUsaha}
-              onChange={(value) => handleInputChange('namaUsaha', value)}
-              placeholder="Nama Usaha"
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Nama Usaha</label>
+            <input 
+              type="text" 
+              name="namaUsaha" 
+              value={form.namaUsaha} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Masukkan nama usaha"
             />
-
-            <InputField
-              label="Lama Usaha"
-              value={formData.lamaUsaha}
-              onChange={(value) => handleInputChange('lamaUsaha', value)}
-              placeholder="Lama Usaha (tahun)"
-              type="number"
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Lama Usaha (tahun)</label>
+            <input 
+              type="number" 
+              name="lamaUsaha" 
+              value={form.lamaUsaha} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Contoh: 5"
             />
-
-            <InputField
-              label="Penghasilan"
-              value={formData.penghasilan}
-              onChange={(value) => handleInputChange('penghasilan', value)}
-              placeholder="Penghasilan (Rupiah)"
-              type="number"
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Penghasilan (Rp)</label>
+            <input 
+              type="number" 
+              name="penghasilan" 
+              value={form.penghasilan} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Contoh: 5000000"
             />
-
-            <InputField
-              label="Riwayat Kredit"
-              value={formData.riwayatKredit}
-              onChange={(value) => handleInputChange('riwayatKredit', value)}
-              placeholder="Riwayat Kredit"
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Riwayat Kredit (skor)</label>
+            <input 
+              type="number" 
+              name="riwayatKredit" 
+              value={form.riwayatKredit} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Contoh: 750"
             />
-
-            <InputField
-              label="Tanggungan"
-              value={formData.tanggungan}
-              onChange={(value) => handleInputChange('tanggungan', value)}
-              placeholder="Jumlah Tanggungan"
-              type="number"
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Jumlah Tanggungan</label>
+            <input 
+              type="number" 
+              name="tanggungan" 
+              value={form.tanggungan} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Contoh: 3"
             />
-
-            <InputField
-              label="Usia"
-              value={formData.usia}
-              onChange={(value) => handleInputChange('usia', value)}
-              placeholder="Usia (tahun)"
-              type="number"
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Usia</label>
+            <input 
+              type="number" 
+              name="usia" 
+              value={form.usia} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+              placeholder="Contoh: 35"
             />
-
-            <SelectField
-              label="Pilih Agunan"
-              value={formData.agunan}
-              onChange={(value) => handleInputChange('agunan', value)}
-              options={agunanOptions}
-            />
-
-            <SelectField
-              label="Pilih Pendidikan"
-              value={formData.pendidikan}
-              onChange={(value) => handleInputChange('pendidikan', value)}
-              options={pendidikanOptions}
-            />
-
-            {/* Submit Button */}
-            <div className="pt-6">
-              <button
-                onClick={handleSubmit}
-                className="bg-red-600 hover:bg-red-700 text-white px-12 py-4 rounded-full font-bold text-lg shadow-lg transition-all duration-200 flex items-center justify-center mx-auto"
-              >
-                <span className="mr-2">▶</span>
-                Kirim
-              </button>
-            </div>
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Agunan</label>
+            <select 
+              name="agunan" 
+              value={form.agunan} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+              <option value="" className="text-gray-400">Pilih Agunan ▼</option>
+              <option value="0">Tidak Ada</option>
+              <option value="1">Agunan Rumah</option>
+              <option value="2">Agunan Kendaraan</option>
+              <option value="3">Agunan Lainnya</option>
+            </select>
+          </div>
+          <div>
+            <label className="block font-semibold mb-2 text-gray-800">Pendidikan Terakhir</label>
+            <select 
+              name="pendidikan" 
+              value={form.pendidikan} 
+              onChange={handleChange} 
+              required 
+              className="w-full bg-teal-700 text-white rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+              <option value="" className="text-gray-400">Pilih Pendidikan ▼</option>
+              <option value="1">SD</option>
+              <option value="2">SMP</option>
+              <option value="3">SMA</option>
+              <option value="4">Diploma</option>
+              <option value="5">Sarjana</option>
+              <option value="6">Pasca Sarjana</option>
+            </select>
           </div>
         </div>
-      </div>
+
+        <div className="text-center pt-4">
+          <button 
+            type="submit" 
+            className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-full transition duration-300 shadow-lg transform hover:scale-105"
+          >
+            ▶ Kirim
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
