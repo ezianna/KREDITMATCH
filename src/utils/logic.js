@@ -72,7 +72,7 @@ export function hitungSkor(data) {
   } else if (skorAkhir >= 3.1) {
     kategori = "Layak";
   } else {
-    kategori = "Tidak direkomendasikan";
+    kategori = "Belum layak";
   }
 
   // ✅ Status lolos atau tidak

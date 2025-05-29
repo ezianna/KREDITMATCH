@@ -66,96 +66,96 @@ function InputPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block font-semibold mb-2 text-gray-800">Nama</label>
-            <input 
-              type="text" 
-              name="nama" 
-              value={form.nama} 
-              onChange={handleChange} 
-              required 
+            <label className="block font-semibold mb-2 text-gray-800">Nama Pemilik Usaha</label>
+            <input
+              type="text"
+              name="nama"
+              value={form.nama}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
-              placeholder="Masukkan nama"
+              placeholder="Masukkan Nama"
             />
           </div>
           <div>
             <label className="block font-semibold mb-2 text-gray-800">Nama Usaha</label>
-            <input 
-              type="text" 
-              name="namaUsaha" 
-              value={form.namaUsaha} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="text"
+              name="namaUsaha"
+              value={form.namaUsaha}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
-              placeholder="Masukkan nama usaha"
+              placeholder="Masukkan Nama Usaha"
             />
           </div>
           <div>
             <label className="block font-semibold mb-2 text-gray-800">Lama Usaha (tahun)</label>
-            <input 
-              type="number" 
-              name="lamaUsaha" 
-              value={form.lamaUsaha} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="number"
+              name="lamaUsaha"
+              value={form.lamaUsaha}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
               placeholder="Contoh: 5"
             />
           </div>
           <div>
-            <label className="block font-semibold mb-2 text-gray-800">Penghasilan (Rp)</label>
-            <input 
-              type="number" 
-              name="penghasilan" 
-              value={form.penghasilan} 
-              onChange={handleChange} 
-              required 
+            <label className="block font-semibold mb-2 text-gray-800">Penghasilan (Rp.)</label>
+            <input
+              type="number"
+              name="penghasilan"
+              value={form.penghasilan}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
-              placeholder="Contoh: 5000000"
+              placeholder="Contoh: 5.000.000"
             />
           </div>
           <div>
             <label className="block font-semibold mb-2 text-gray-800">Riwayat Kredit (skor)</label>
-            <input 
-              type="number" 
-              name="riwayatKredit" 
-              value={form.riwayatKredit} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="number"
+              name="riwayatKredit"
+              value={form.riwayatKredit}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
-              placeholder="Contoh: 750"
+              placeholder="Contoh: 0-5"
             />
           </div>
           <div>
             <label className="block font-semibold mb-2 text-gray-800">Jumlah Tanggungan</label>
-            <input 
-              type="number" 
-              name="tanggungan" 
-              value={form.tanggungan} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="number"
+              name="tanggungan"
+              value={form.tanggungan}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
               placeholder="Contoh: 3"
             />
           </div>
           <div>
-            <label className="block font-semibold mb-2 text-gray-800">Usia</label>
-            <input 
-              type="number" 
-              name="usia" 
-              value={form.usia} 
-              onChange={handleChange} 
-              required 
+            <label className="block font-semibold mb-2 text-gray-800">Usia (Tahun)</label>
+            <input
+              type="number"
+              name="usia"
+              value={form.usia}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400" 
               placeholder="Contoh: 35"
             />
           </div>
           <div>
             <label className="block font-semibold mb-2 text-gray-800">Agunan</label>
-            <select 
-              name="agunan" 
-              value={form.agunan} 
-              onChange={handleChange} 
-              required 
+            <select
+              name="agunan"
+              value={form.agunan}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
               <option value="" className="text-gray-400">Pilih Agunan ▼</option>
@@ -167,11 +167,11 @@ function InputPage() {
           </div>
           <div>
             <label className="block font-semibold mb-2 text-gray-800">Pendidikan Terakhir</label>
-            <select 
-              name="pendidikan" 
-              value={form.pendidikan} 
-              onChange={handleChange} 
-              required 
+            <select
+              name="pendidikan"
+              value={form.pendidikan}
+              onChange={handleChange}
+              required
               className="w-full bg-teal-700 text-white rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
               <option value="" className="text-gray-400">Pilih Pendidikan ▼</option>
@@ -186,11 +186,11 @@ function InputPage() {
         </div>
 
         <div className="text-center pt-4">
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-full transition duration-300 shadow-lg transform hover:scale-105"
           >
-            ▶ Kirim
+          Kirim
           </button>
         </div>
       </form>

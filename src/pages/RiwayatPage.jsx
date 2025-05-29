@@ -7,7 +7,7 @@ function RiwayatPage() {
     <div
         className="min-h-screen flex flex-col justify-center items-center bg-[#27548a] px-4">
         <h1 className="text-7xl font-bold text-white mb-4">
-          Tabel Riwayat Kredit Mahasiswa
+          Tabel Riwayat Kredit UMKM
         </h1>
       <TabelRiwayat />
     </div>
