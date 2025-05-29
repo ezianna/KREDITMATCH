@@ -143,7 +143,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      className="w-full bg-white text-blue-600 rounded-full py-4 px-6 font-semibold hover:bg-blue-50 transition-all duration-200 shadow-lg transform hover:scale-105 active:scale-95"
+                      className="w-full bg-white text-blue-600 rounded-full py-4 px-6 font-semibold hover:bg-white-50 transition-all duration-200 shadow-lg transform hover:scale-105 active:scale-95"
                     >
                       Sign in
                     </button>
