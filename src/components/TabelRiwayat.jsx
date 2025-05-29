@@ -55,7 +55,7 @@ const TabelRiwayat = () => {
                 <td className="px-4 py-3 font-medium border-r border-gray-300 text-center">{idx + 1}</td>
                 <td className="px-4 py-3 font-medium border-r border-gray-300 text-center">{hasil.nama ?? '-'}</td>
                 <td className="px-4 py-3 border-r border-gray-300 text-center">{hasil.namaUsaha ?? '-'}</td>
-                <td className="px-4 py-3 border-r border-gray-300 text-center">{hasil.lamaUsaha ?? '-'}</td>
+                <td className="px-4 py-3 border-r border-gray-300 text-center">{hasil.lamaUsaha ?? '-'} Tahun</td>
                 <td className="px-4 py-3 border-r border-gray-300 text-center">{hasil.penghasilan?.toLocaleString('id-ID') ?? '-'}</td>
                 <td className="px-4 py-3 border-r border-gray-300 text-center">{hasil.ncf != null ? hasil.ncf.toFixed(2) : '-'}</td>
                 <td className="px-4 py-3 border-r border-gray-300 text-center">{hasil.nsf != null ? hasil.nsf.toFixed(2) : '-'}</td>
